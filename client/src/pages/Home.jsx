@@ -40,7 +40,6 @@ function Home() {
       } catch (error) {
         alert(error);
       } finally {
-        // console.log(`finally:${posts}`);
         setIsLoading(false);
       }
     };
@@ -48,7 +47,6 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    console.log(`Updated posts:`, posts);
   }, [posts]);
   return (
     <div>
