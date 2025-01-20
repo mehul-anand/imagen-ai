@@ -45,6 +45,7 @@ function Home() {
     };
     fetchPosts();
   }, []);
+  
   return (
     <div>
       <section className="max-w-7xl mx-auto">
