@@ -35,7 +35,7 @@ function Home() {
         });
         if (response.ok) {
           const result = await response.json();
-          setPosts(result.data);
+          setPosts(result.data.reverse());
         }
       } catch (error) {
         alert(error);
@@ -45,7 +45,7 @@ function Home() {
     };
     fetchPosts();
   }, []);
-  
+
   return (
     <div>
       <section className="max-w-7xl mx-auto">
