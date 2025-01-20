@@ -20,7 +20,6 @@ router.route("/").get(async (req, res) => {
     const posts = await ImgPost.find({});
     res.status(200).json({ success: true, data: posts });
   } catch (error) {
-    console.log("BE Error");
     res.status(500).json({ success: false, message: `Error:${error}` });
   }
 });

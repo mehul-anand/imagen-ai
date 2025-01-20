@@ -2,7 +2,6 @@ import React from "react";
 import Card from "./Card";
 
 const CardGrid = ({ data, errorMessage }) => {
-  console.log("CardGrid data:", data);
   if (data && data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
   }

@@ -46,7 +46,6 @@ function CreatePost() {
   };
   const randomPromptHandler = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
-    console.log(`randomPrompt : ${randomPrompt}`);
     setForm({ ...form, prompt: randomPrompt });
   };
   const generateImg = async () => {
