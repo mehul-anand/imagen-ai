@@ -45,9 +45,6 @@ function Home() {
     };
     fetchPosts();
   }, []);
-
-  useEffect(() => {
-  }, [posts]);
   return (
     <div>
       <section className="max-w-7xl mx-auto">
