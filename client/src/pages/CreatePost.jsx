@@ -24,7 +24,7 @@ function CreatePost() {
     if (form.prompt && form.title && user) {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:8080/api/posts", {
+        const response = await fetch("https://imagen-ai-bqni.onrender.com/api/posts", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body:JSON.stringify({title:form.title,prompt:form.prompt,photo:form.photo,userId:user.id})
@@ -54,7 +54,7 @@ function CreatePost() {
       try {
         setImgGen(true);
         const response = await fetch(
-          `http://localhost:8080/api/image/generate?prompt=${encodeURIComponent(
+          `https://imagen-ai-bqni.onrender.com/api/image/generate?prompt=${encodeURIComponent(
             form.prompt
           )}`,
           {
