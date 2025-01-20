@@ -28,10 +28,10 @@ function Navbar() {
         </SignedIn>
         <SignedOut>
           <SignInButton>
-            <button className="text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center">Sign In</button>
+            <button className="text-white font-inter bg-[#6469ff] font-medium rounded-md  sm:w-auto px-5 py-2.5 sm:px-100 text-center">Sign In</button>
           </SignInButton>
           <SignUpButton >
-            <button className="text-[#6469ff] bg-white font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center border border-[#6469ff]">Sign Up</button>
+            <button className="text-[#6469ff] font-inter bg-white font-medium rounded-md sm:w-auto px-5 py-2.5 sm:px-100 text-center border border-[#6469ff]">Sign Up</button>
             </SignUpButton>
         </SignedOut>
       </div>
