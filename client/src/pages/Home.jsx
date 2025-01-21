@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Components from "../components";
+import { Link } from "react-router-dom";
 
 const { FormField, Loader, CardGrid } = Components;
 
@@ -29,10 +30,13 @@ function Home() {
     const fetchPosts = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("https://imagen-ai-bqni.onrender.com/api/posts", {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
+        const response = await fetch(
+          "https://imagen-ai-bqni.onrender.com/api/posts",
+          {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         if (response.ok) {
           const result = await response.json();
           setPosts(result.data.reverse());
@@ -57,9 +61,25 @@ function Home() {
             Browse through the collection of stunning images made by the
             community!
           </p>
+          <p className="my-2 text-[#666e75] text-[16px] max-w-[500px]">
+            Wanna create yours? Well I have a good news for ya
+          </p>
+          <Link
+            to="/create-post"
+            className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
+          >
+            Create Art
+          </Link>
         </div>
         <div className="mt-16">
-          <FormField label="Search a post" type="text" name="text" placeholder="Type your search query here and press enter" value={searchedText} handleChange={searchFunc} />
+          <FormField
+            label="Search a post"
+            type="text"
+            name="text"
+            placeholder="Type your search query here and press enter"
+            value={searchedText}
+            handleChange={searchFunc}
+          />
         </div>
         <div className="mt-10">
           {isLoading ? (
