@@ -2,7 +2,7 @@ import React from "react";
 import { download, mail } from "../assets";
 import { downloadImage } from "../utils";
 
-const Card = ({ title, prompt, photo, artist, userMail, username }) => {
+const Card = ({ title, prompt, photo, userMail, username }) => {
   return (
     <>
       <div className="rounded-xl group relative shadow-card hover:shadow-cardhover card">
