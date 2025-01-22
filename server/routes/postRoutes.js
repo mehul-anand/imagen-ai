@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
 import ImgPost from "../mongodb/models/post.js";
 import { clerkClient } from "@clerk/express";
-import { v4 as uuidv4 } from "uuid"
+import { v4 as uuidv4 } from "uuid";
 
 dotenv.config();
 
@@ -17,10 +17,12 @@ cloudinary.config({
 
 router.route("/").get(async (req, res) => {
   try {
-    const posts = await ImgPost.find({});
+    const posts = await ImgPost.aggregate([{ $sample: { size: 10 } }]);
     res.status(200).json({ success: true, data: posts });
   } catch (error) {
-    res.status(500).json({ success: false, message: `Error:${error}` });
+    res
+      .status(500)
+      .json({ success: false, message: `Error: ${error.message}` });
   }
 });
 
@@ -30,9 +32,9 @@ router.route("/").post(async (req, res) => {
     const getUser = await clerkClient.users.getUser(userId);
     const userMail = getUser.emailAddresses[0].emailAddress;
     const photoUrl = await cloudinary.uploader.upload(photo);
-    const fullName = getUser.firstName + " " +  getUser.lastName
-    const username = getUser.username
-    const postId = uuidv4()
+    const fullName = getUser.firstName + " " + getUser.lastName;
+    const username = getUser.username;
+    const postId = uuidv4();
     const existingPost = await ImgPost.findOne({ postId });
     if (existingPost) {
       return res
@@ -47,7 +49,7 @@ router.route("/").post(async (req, res) => {
       prompt,
       username,
       photo: photoUrl.url,
-      artist:fullName
+      artist: fullName,
     });
     res.status(201).json({ success: true, data: newPost });
   } catch (error) {
