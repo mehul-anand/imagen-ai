@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { shadesOfPurple } from '@clerk/themes'
 import {
   ClerkProvider,
   SignedIn,
@@ -17,6 +18,7 @@ import {
 
 import Pages from "./pages";
 import Layout from "./pages/Layout";
+import { HomeTwo } from "./pages/HomeTwo";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -24,40 +26,43 @@ if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
 }
 
-const { Home, CreatePost } = Pages;
+const { Home, Community, CreatePost } = Pages;
 
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <>
       <Route path="" element={<Home />} />
-      <Route
-        path="create-post"
-        element={
-          <>
-            <SignedIn>
-              <CreatePost />
-            </SignedIn>
+      <Route path="/" element={<Layout />}>
+        <Route path="community" element={<Community />} />
+        <Route
+          path="create-post"
+          element={
+            <>
+              <SignedIn>
+                <CreatePost />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="sign-in"
+          element={
             <SignedOut>
               <RedirectToSignIn />
             </SignedOut>
-          </>
-        }
-      />
-      <Route
-        path="sign-in"
-        element={
-          <SignedOut>
-            <RedirectToSignIn />
-          </SignedOut>
-        }
-      />
-    </Route>
+          }
+        />
+      </Route>
+    </>
   )
 );
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+    <ClerkProvider appearance={{baseTheme:shadesOfPurple}} publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <RouterProvider router={appRouter} />
     </ClerkProvider>
   </StrictMode>
