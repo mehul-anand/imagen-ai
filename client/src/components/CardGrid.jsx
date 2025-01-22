@@ -7,7 +7,9 @@ const CardGrid = ({ data, errorMessage }) => {
   }
 
   return (
-    <h2 className="mt-5 font-bold text-[#6469ff] text-xl uppercase">{errorMessage}</h2>
+    <h2 className="mt-5 font-bold text-[#6469ff] text-xl uppercase">
+      {errorMessage}
+    </h2>
   );
 };
 

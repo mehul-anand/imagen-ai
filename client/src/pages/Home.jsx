@@ -1,116 +1,44 @@
-import React, { useEffect, useState } from "react";
-import Components from "../components";
+import React from "react";
+import { Vortex } from "../components/Vortex";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 
-const { FormField, Loader, CardGrid } = Components;
-
 function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [searchedText, setSearchedText] = useState("");
-  const [searchedResult, setSearchedResult] = useState("");
-  const [searchTimeout, setSearchTimeout] = useState(null);
-
-  const searchFunc = (e) => {
-    clearTimeout(searchTimeout);
-    setSearchedText(e.target.value);
-    setSearchTimeout(
-      setTimeout(() => {
-        const filteredPosts = posts.filter(
-          (postObj) =>
-            postObj.title.toLowerCase().includes(searchedText.toLowerCase()) ||
-            postObj.prompt.toLowerCase().includes(searchedText.toLowerCase())
-        );
-        setSearchedResult(filteredPosts);
-      }, 800)
-    );
-  };
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(
-          "https://imagen-ai-bqni.onrender.com/api/posts",
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        if (response.ok) {
-          const result = await response.json();
-          setPosts(result.data.reverse());
-        }
-      } catch (error) {
-        alert(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchPosts();
-  }, []);
-
   return (
-    <div>
-      <section className="max-w-7xl mx-auto">
-        <div>
-          <h1 className="font-extrabold text-[#222328] text-[32px]">
-            Community Showcase
-          </h1>
-          <p className="mt-2 text-[#666e75] text-[16px] max-w-[500px]">
-            Browse through the collection of stunning images made by the
-            community!
-          </p>
-          <p className="my-2 text-[#666e75] text-[16px] max-w-[500px]">
-            Wanna create yours? Well I have a good news for ya
-          </p>
-          <Link
-            to="/create-post"
-            className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
-          >
-            Create Art
+    <div className="w-100% mx-auto h-screen overflow-hidden bg-black">
+      <Vortex
+        backgroundColor="transparent"
+        className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
+      >
+        <h3 className="text-white text-2xl md:text-6xl font-bold text-center mb-2">
+          Welcome to
+        </h3>
+        <h2 className="text-white text-2xl md:text-6xl font-bold text-center underline decoration-[#6469ff]">
+          Imagen AI
+        </h2>
+        <p className="text-white text-sm md:text-2xl max-w-xl mt-6 text-center">
+          Unleash creativity with AI-driven diffusion art—generate, showcase,
+          and connect with fellow creators.
+        </p>
+        <div className="flex justify-between gap-3 mt-2 ">
+          <Link to="/community">
+            <button className="font-inter inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-[#6469ff] bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors">
+              Community Showcase
+            </button>
+          </Link>
+          <Link to="/create-post">
+            <button className="font-inter inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-[#6469ff] bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors">
+              Create Art
+            </button>
           </Link>
         </div>
-        <div className="mt-16">
-          <FormField
-            label="Search a post"
-            type="text"
-            name="text"
-            placeholder="Type your search query here and press enter"
-            value={searchedText}
-            handleChange={searchFunc}
-          />
-        </div>
-        <div className="mt-10">
-          {isLoading ? (
-            <div className="flex justify-center items-center">
-              <Loader />
-            </div>
-          ) : (
-            <>
-              {searchedText && (
-                <h2 className="font-medium text-[#666e75] text-xl mb-3">
-                  Showing results form{" "}
-                  <span className="text-[#222328]">{searchedText}</span>
-                </h2>
-              )}
-              <div className="grid lg:grid-cols-4 sm:grid-cols-3 xd:grid-cols-2 grid-cols-1 gap-3">
-                {searchedText ? (
-                  <CardGrid
-                    data={searchedResult} //searchedPosts
-                    errorMessage="No search results found"
-                  />
-                ) : (
-                  <CardGrid
-                    data={posts} //allPosts
-                    errorMessage="No posts found"
-                  />
-                )}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
+      </Vortex>
     </div>
   );
 }

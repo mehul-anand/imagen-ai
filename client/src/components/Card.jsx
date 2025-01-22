@@ -10,9 +10,10 @@ const Card = ({ title, prompt, photo, userMail, username }) => {
           className="w-full h-auto object-cover rounded-xl"
           src={photo}
           alt={prompt}
+          loading="lazy"
         />
-        <div className="group-hover:flex flex-col max-h-[94.5%] hidden absolute bottom-0 left-0 right-0 bg-[#10131f] m-2 p-4 rounded-md">
-          <p className="text-white text-sm overflow-y-auto prompt underline decoration-[#6469ff] decoration-2">
+        <div className="group-hover:flex flex-col max-h-[94.5%] hidden absolute bottom-0 left-0 right-0 bg-gradient-to-r from-indigo-500 to-purple-500 m-2 p-4 rounded-md">
+          <p className="text-white text-sm overflow-y-auto prompt underline decoration-white decoration-2">
             {title}
           </p>
 
