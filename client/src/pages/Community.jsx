@@ -118,11 +118,7 @@ function Community() {
                     />
                     <button
                       onClick={fetchPosts}
-<<<<<<< HEAD
                       className="font-inter inline-flex h-12 sm:min-h-3/5 animate-shimmer items-center justify-center rounded-md border border-[#6469ff] bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors"
-=======
-                      className="font-inter inline-flex h-12 sm:h-3/5 animate-shimmer items-center justify-center rounded-md border border-[#6469ff] bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors"
->>>>>>> ce9ef8ad8343227c86deb04e1fd7e293dbc3d014
                     >
                       Refresh
                     </button>
@@ -130,11 +126,7 @@ function Community() {
                 )}
               </div>
             </>
-<<<<<<< HEAD
         )}
-=======
-          )}
->>>>>>> ce9ef8ad8343227c86deb04e1fd7e293dbc3d014
         </div>
       </section>
     </div>
