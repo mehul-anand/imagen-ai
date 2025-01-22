@@ -30,11 +30,7 @@ function Community() {
     setIsLoading(true);
     try {
       const response = await fetch(
-<<<<<<< HEAD
-        "http://localhost:8080/api/posts",
-=======
         "https://imagen-ai-bqni.onrender.com/api/posts",
->>>>>>> ce9ef8ad8343227c86deb04e1fd7e293dbc3d014
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
