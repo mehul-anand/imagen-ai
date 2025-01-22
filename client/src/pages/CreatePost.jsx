@@ -30,7 +30,7 @@ function CreatePost() {
           body:JSON.stringify({title:form.title,prompt:form.prompt,photo:form.photo,userId:user.id})
         });
         await response.json();
-        navigate("/")
+        navigate("/community")
       } catch (error) {
         alert(error)
 
@@ -83,8 +83,8 @@ function CreatePost() {
   return (
     <section className="max-w-7xl mx-auto">
       <div>
-        <h1 className="font-extrabold text-[#222328] text-[32px]">Your lab</h1>
-        <p className="mt-2 text-[#666e75] text-[16px] max-w-[500px]">
+        <h1 className="font-extrabold text-white text-[32px]">Your lab</h1>
+        <p className="mt-2 text-[#d8dfe6] text-[16px] max-w-[500px]">
           Create your own images from your creative prompts
         </p>
       </div>
@@ -109,7 +109,7 @@ function CreatePost() {
             handleRandom={randomPromptHandler}
           />
         </div>
-        <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
+        <div className="relative bg-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
           {form.photo ? (
             <>
               <img
@@ -122,10 +122,9 @@ function CreatePost() {
             <img
               src={preview}
               alt="preview"
-              className="w-9/12 h-9/12 object-contain opacity-40"
+              className="w-9/12 h-9/12 object-contain opacity-40 invert"
             />
           )}{" "}
-          {/* useState form */}
           {imgGen && (
             <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
               <Loader />
@@ -136,19 +135,19 @@ function CreatePost() {
           <button
             type="button"
             onClick={generateImg}
-            className="text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            className="text-white bg-gradient-to-r from-indigo-500 to-purple-500 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
             disabled={imgGen?true:false}
           >
             {imgGen ? "Generating..." : "Generate"}
           </button>
         </div>
         <div className="mt-10">
-          <p className="mt-2 text-[#666e75] text-[14px]">
+          <p className="mt-2 text-[#d8dfe6] text-[14px]">
             You can share your images with the community too , you'll find yours
             in the community showcase 🚀
           </p>
           <button
-            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            className="text-white mt-2 bg-gradient-to-r from-indigo-500 to-purple-500 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
             type="submit"
             disabled={loading?true:false}
           >

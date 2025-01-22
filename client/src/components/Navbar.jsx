@@ -12,26 +12,41 @@ import {
 function Navbar() {
   
   return (
-    <header className="w-full flex justify-between items-center bg-white sm:px-8 px-4 py-4 border-b border-b-[#e6ebf4] mb-10">
+    <header className="w-full flex justify-between items-center bg-black sm:px-8 px-4 py-4 border-b border-b-[#6469ff] mb-10">
       <Link to="/">
         <img src={logo} alt="logo" className="w-28 object-contain" />
       </Link>
       <div className="flex justify-between gap-3">
         <SignedIn>
-          <Link
-            to="/create-post"
-            className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
-          >
-            Create Art
-          </Link>
+           <Link
+             to="/create-post"
+           >
+             <button className="p-[3px] relative">
+               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+               <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+                 Create Art
+               </div>
+             </button>
+           </Link>
           <UserButton/>
         </SignedIn>
         <SignedOut>
           <SignInButton>
-            <button className="text-white font-inter bg-[#6469ff] font-medium rounded-md  sm:w-auto px-5 py-2.5 sm:px-100 text-center">Sign In</button>
+          <button className="p-[3px] relative">
+               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+               <div className="sm:px-8 sm:py-2 px-3 py-2 relative group transition duration-200 text-white">
+                 Sign In
+               </div>
+             </button>
           </SignInButton>
+          
           <SignUpButton >
-            <button className="text-[#6469ff] font-inter bg-white font-medium rounded-md sm:w-auto px-5 py-2.5 sm:px-100 text-center border border-[#6469ff]">Sign Up</button>
+          <button className="p-[3px] relative">
+               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+               <div className="sm:px-8 sm:py-2 px-3 py-2 bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+                 Sign Up
+               </div>
+             </button>
             </SignUpButton>
         </SignedOut>
       </div>
