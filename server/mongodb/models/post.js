@@ -9,6 +9,7 @@ const ImgPost = new mongoose.Schema({
     userMail:{type:String,required:true},
     prompt:{type:String,required:true},
     photo:{type:String,required:true},
+    createdAt: { type: Date, default: Date.now, index: true }
 })
 
 const PostSchema = mongoose.model("ImgPost",ImgPost)
