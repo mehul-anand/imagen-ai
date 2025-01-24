@@ -3,9 +3,11 @@ import Components from "../components";
 
 const { FormField, Loader } = Components;
 import { preview } from "../assets";
-import {getRandomPrompt} from "../utils";
+import { getRandomPrompt } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
+import { downloadImage } from "../utils";
+import { download } from "../assets";
 
 function CreatePost() {
   const { user } = useUser();
@@ -16,6 +18,14 @@ function CreatePost() {
     photo: "",
   });
 
+  const imgDownloader = () => {
+    if(form.title !== "" && form.photo !==""){
+      downloadImage(form.title,form.photo)
+    }else{
+      alert("Please fill the title and generate the image")
+    }
+  };
+
   const [imgGen, setImgGen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -24,21 +34,28 @@ function CreatePost() {
     if (form.prompt && form.title && user) {
       setLoading(true);
       try {
-        const response = await fetch("https://imagen-ai-bqni.onrender.com/api/posts", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body:JSON.stringify({title:form.title,prompt:form.prompt,photo:form.photo,userId:user.id})
-        });
+        const response = await fetch(
+          "https://imagen-ai-bqni.onrender.com/api/posts",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title: form.title,
+              prompt: form.prompt,
+              photo: form.photo,
+              userId: user.id,
+            }),
+          }
+        );
         await response.json();
-        navigate("/community")
+        navigate("/community");
       } catch (error) {
-        alert(error)
-
-      }finally{
-        setLoading(false)
+        alert(error);
+      } finally {
+        setLoading(false);
       }
-    }else{
-      alert("Please enter a prompt and generate an image with it's title")
+    } else {
+      alert("Please enter a prompt and generate an image with it's title");
     }
   };
   const formChangeHandler = (e) => {
@@ -58,7 +75,7 @@ function CreatePost() {
           )}`,
           {
             method: "GET",
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
           }
         );
         const data = await response.json();
@@ -83,7 +100,9 @@ function CreatePost() {
   return (
     <section className="max-w-7xl mx-auto">
       <div>
-        <h1 className="font-extrabold text-[32px] bg-gradient-to-r from-indigo-400 to-purple-500 inline-block text-transparent bg-clip-text">Your lab</h1>
+        <h1 className="font-extrabold text-[32px] bg-gradient-to-r from-indigo-400 to-purple-500 inline-block text-transparent bg-clip-text">
+          Your lab
+        </h1>
         <p className="mt-2 text-[#d8dfe6] text-[16px] max-w-[500px]">
           Create your own images from your creative prompts
         </p>
@@ -112,11 +131,21 @@ function CreatePost() {
         <div className="relative bg-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
           {form.photo ? (
             <>
-              <img
-                className="w-full h-full object-contain"
-                src={form.photo}
-                alt={form.prompt}
-              />
+              <div className="relative">
+                <img
+                  className="w-full h-full object-contain"
+                  src={form.photo}
+                  alt={form.prompt}
+                />
+                <span className="outline-none bg-transparent border-none absolute top-0  bg-gradient-to-r from-indigo-400 to-purple-500 rounded-xl">
+                  <img
+                    onClick={imgDownloader}
+                    src={download}
+                    alt="download"
+                    className="w-6 h-6 object-contain invert"
+                  />
+                </span>
+              </div>
             </>
           ) : (
             <img
@@ -136,7 +165,7 @@ function CreatePost() {
             type="button"
             onClick={generateImg}
             className="text-white bg-gradient-to-r from-indigo-500 to-purple-500 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-            disabled={imgGen?true:false}
+            disabled={imgGen ? true : false}
           >
             {imgGen ? "Generating..." : "Generate"}
           </button>
@@ -149,7 +178,7 @@ function CreatePost() {
           <button
             className="text-white mt-2 bg-gradient-to-r from-indigo-500 to-purple-500 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
             type="submit"
-            disabled={loading?true:false}
+            disabled={loading ? true : false}
           >
             {loading ? "Sharing..." : "Share with the community"}
           </button>
