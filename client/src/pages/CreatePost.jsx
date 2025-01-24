@@ -83,7 +83,7 @@ function CreatePost() {
   return (
     <section className="max-w-7xl mx-auto">
       <div>
-        <h1 className="font-extrabold text-white text-[32px]">Your lab</h1>
+        <h1 className="font-extrabold text-[32px] bg-gradient-to-r from-indigo-400 to-purple-500 inline-block text-transparent bg-clip-text">Your lab</h1>
         <p className="mt-2 text-[#d8dfe6] text-[16px] max-w-[500px]">
           Create your own images from your creative prompts
         </p>

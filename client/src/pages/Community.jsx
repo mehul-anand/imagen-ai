@@ -55,7 +55,7 @@ function Community() {
     <div>
       <section className="max-w-7xl mx-auto min-h-screen">
         <div>
-          <h1 className="font-extrabold text-white text-[32px]">
+          <h1 className="font-extrabold text-[32px] bg-gradient-to-r from-indigo-400 to-purple-500 inline-block text-transparent bg-clip-text">
             Community Showcase
           </h1>
           <p className="mt-2 text-[#d8dfe6] text-[16px] max-w-[500px]">
