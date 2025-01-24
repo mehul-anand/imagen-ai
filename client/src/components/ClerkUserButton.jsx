@@ -7,12 +7,9 @@ function ClerkUserButton() {
       <UserButton
         appearance={{
           elements: {
-            userButtonPopoverFooter: {
-              display: "none",
-            },
-            button__manageAccount: {
-              display: "none",
-            },
+            userButtonPopoverMain: "bg-gradient-to-r from-indigo-500 to-purple-500",
+            userButtonPopoverFooter: "hidden",
+            button__manageAccount: "hidden",
           },
         }}
       />
