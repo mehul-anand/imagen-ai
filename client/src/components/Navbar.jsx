@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useMatch } from "react-router-dom";
+import ClerkUserButton from "./ClerkUserButton";
 import logo from "../assets/logo.svg";
 import {
   SignedIn,
@@ -42,7 +43,7 @@ function Navbar() {
               </Link>
             </>
           )}
-          <UserButton />
+          <ClerkUserButton/>
         </SignedIn>
         <SignedOut>
           <SignInButton>
