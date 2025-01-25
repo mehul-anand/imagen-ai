@@ -16,6 +16,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { postLoader } from "./pages/Community";
+
 import Pages from "./pages";
 import Layout from "./pages/Layout";
 import { HomeTwo } from "./pages/HomeTwo";
@@ -33,7 +35,7 @@ const appRouter = createBrowserRouter(
     <>
       <Route path="" element={<Home />} />
       <Route path="/" element={<Layout />}>
-        <Route path="community" element={<Community />} />
+        <Route path="community" element={<Community />} loader={postLoader} />
         <Route
           path="create-post"
           element={
