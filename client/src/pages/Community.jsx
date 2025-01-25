@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Components from "../components";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const { FormField, Loader, CardGrid } = Components;
 
 function Community() {
-  const data = useLoaderData()
   const [isLoading, setIsLoading] = useState(false);
-  const [posts, setPosts] = useState(data.data);
+  const [posts, setPosts] = useState([]);
   const [searchedText, setSearchedText] = useState("");
   const [searchedResult, setSearchedResult] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
@@ -39,7 +38,7 @@ function Community() {
       );
       if (response.ok) {
         const result = await response.json();
-        setPosts(result.data.reverse());        
+        setPosts(result.data.reverse());
       }
     } catch (error) {
       alert(error);
@@ -127,7 +126,7 @@ function Community() {
                 )}
               </div>
             </>
-          )}
+        )}
         </div>
       </section>
     </div>
@@ -135,18 +134,3 @@ function Community() {
 }
 
 export default Community;
-
-export const postLoader = async () => {
-  try {
-    const res = await fetch("https://imagen-ai-bqni.onrender.com/api/posts", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
-    if (res.ok) {
-      const result = await res.json();
-      return result;
-    }
-  } catch (error) {
-    alert(error);
-  }
-};
