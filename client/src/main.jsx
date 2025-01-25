@@ -6,7 +6,6 @@ import {
   SignedIn,
   SignedOut,
   RedirectToSignIn,
-  useAuth,
 } from "@clerk/clerk-react";
 import "./index.css";
 import {
