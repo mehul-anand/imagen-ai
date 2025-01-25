@@ -98,7 +98,7 @@ function CreatePost() {
     }
   };
   return (
-    <section className="max-w-7xl mx-auto">
+    <section className="my-2 max-w-7xl mx-auto">
       <div>
         <h1 className="font-extrabold text-[32px] bg-gradient-to-r from-indigo-400 to-purple-500 inline-block text-transparent bg-clip-text">
           Your lab
