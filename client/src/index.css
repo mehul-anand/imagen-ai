@@ -24,22 +24,22 @@
 
 ::-webkit-scrollbar {
     width: 1em;
-    border-radius: 100vw;
+    height: 1em;
 }
 
 ::-webkit-scrollbar-track {
     background: #000000;
     border-radius: 100vw;
-    margin-block: 0.5em
+    margin-block: 0.5em;
 }
 
 ::-webkit-scrollbar-thumb {
-    border: 0.2em solid transparent;
-    border-image: linear-gradient(to bottom, #A855F7, #6366F1);
-    border-image-slice: 1;
-    border-radius: 100vw;
+    background: linear-gradient(to bottom, #A855F7, #6366F1);
+    border-top-left-radius: 100vw;
+    border-bottom-left-radius: 100vw;
+    
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #A855F7, #6366F1);
+    background: linear-gradient(to bottom, #a03dfc, #4245ef);
 }
