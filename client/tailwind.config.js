@@ -7,7 +7,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: "class",
+  darkMode: "class", // for HomeThree off
   theme: {
     extend: {
       screens: {
@@ -21,7 +21,8 @@ export default {
         cardhover: '0 0 1px 0 rgba(189,192,207,0.06),0 10px 16px -1px rgba(189,192,207,0.4)',
       },
       "animation": {
-    shimmer: "shimmer 2s linear infinite"
+    shimmer: "shimmer 2s linear infinite",
+    aurora: "aurora 60s linear infinite",
   },
   "keyframes": {
     shimmer: {
@@ -31,6 +32,14 @@ export default {
       to: {
         "backgroundPosition": "-200% 0"
       }
+    },
+    aurora: {
+      from: {
+        backgroundPosition: "50% 50%, 50% 50%",
+      },
+      to: {
+        backgroundPosition: "350% 50%, 350% 50%",
+      },
     }
   }
     },

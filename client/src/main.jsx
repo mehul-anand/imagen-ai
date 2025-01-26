@@ -18,6 +18,7 @@ import {
 import Pages from "./pages";
 import Layout from "./pages/Layout";
 import { HomeTwo } from "./pages/HomeTwo";
+import { HomeThree } from "./pages/HomeThree";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
